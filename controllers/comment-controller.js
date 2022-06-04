@@ -1,5 +1,3 @@
-// const { clear } = require('console');
-const res = require('express/lib/response');
 const { json } = require('express/lib/response');
 const { Comment, Pizza } = require('../models');
 
@@ -40,18 +38,19 @@ const commentController = {
             })
             .catch(err => res.json(err));
     },
-
+    // remove reply
     removeReply({ params }, res) {
         Comment.findOneAndUpdate(
             { _id: params.commentId },
-            { $pull: { replies: { replyId } } },
+            { $pull: { replies: { replyId: params.replyId } } },
             { new: true }
         )
         .then (dbPizzaData => res.json(dbPizzaData))
-        .catch{err => res.json(err)}
-}
+        .catch(err => res.json(err));
+    },
 
-removeComment({ params }, res) {
+
+    removeComment({ params }, res) {
     Comment.findOneAndDelete({ _id: params.commentId })
         .then(deletedComment => {
             if (!deletedComment) {
@@ -72,6 +71,7 @@ removeComment({ params }, res) {
         })
         .catch(err => res.json(err));
 }
-}
+};
+
 
 module.exports = commentController;
