@@ -1,4 +1,4 @@
-const { clear } = require('console');
+// const { clear } = require('console');
 const { Comment, Pizza } = require('../models');
 
 const commentController = {
