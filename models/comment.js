@@ -1,7 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ReplySchema = new Schema(
+const ReplySchema = new Schema(  
 
     {
         replyId: {
@@ -62,5 +62,6 @@ CommentSchema.virtual('replyCount').get(function () {
 });
 
 const Comment = model('Comment', CommentSchema);
+// making this change to force heroku deployment
 
 module.exports = Comment;
